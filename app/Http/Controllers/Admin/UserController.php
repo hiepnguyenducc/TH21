@@ -76,5 +76,5 @@ class UserController extends Controller
         }
         return redirect('/admin/user')->with('message', 'User Deleted Successfully');
     }
-
+    
 }

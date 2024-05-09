@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DashboardController;
@@ -8,6 +8,8 @@ use \App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Livewire\Admin\Brand\Index;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +25,21 @@ use App\Livewire\Admin\Brand\Index;
 Route::get('/', function () {
     return view('welcome');
 });
+//Route login
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class,'postUser']) -> name('auth.postUser');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'Checklogin'])->name('auth.Checklogin');
+Route::get('logOut', [AuthController::class, 'logOut'])->name('logOut');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/strayusers', [HomeController::class, 'strayusers'])->name('strayusers'); //Báo lỗi người dùng cố truy cập đến trang admin
+
 Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
-Auth::routes();
+
+//Route Admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
+
     Route::get('/dashboard',[DashboardController::class,'index']);
 
     Route::controller(CategoryProductController::class)->group(function (){
@@ -74,4 +84,4 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

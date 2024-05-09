@@ -117,7 +117,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    <img src="{{asset('/uploads/user/'.Auth::user()->image)}}" alt="profile"/>
+                    <img src="{{asset('/uploads/user/'. Auth::user()->image)}}" alt="profile"/>
                     <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -127,14 +127,14 @@
                     </a>
 
 
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    <a class="dropdown-item" href="{{ route('logOut') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         <i class="mdi mdi-logout text-primary"></i>
-                        {{ __('Logout') }}
+                        {{ __('logOut') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logOut') }}" method="GET" class="d-none">
                         @csrf
                     </form>
 

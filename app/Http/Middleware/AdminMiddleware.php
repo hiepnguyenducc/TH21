@@ -14,11 +14,12 @@ class AdminMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(!Auth::user()->role_as == '1'){
-            return redirect('/home')->with('status','Access Denied. As you are not Admin');
-        }
+    public function handle($request, Closure $next)
+{
+    if (Auth::check() && Auth::user()->role_as == '1') {
         return $next($request);
     }
+
+    return redirect('strayusers')->with('status', 'Bạn không có quyền truy cập!!');
+}
 }
