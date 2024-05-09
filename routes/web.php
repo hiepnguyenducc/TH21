@@ -3,13 +3,14 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DashboardController;
-use \App\Http\Controllers\Admin\ProductController;
-use \App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Livewire\Admin\Brand\Index;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\users\User_ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +84,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     });
 
 });
+//Route Website
 
+
+Route::controller(User_ProductsController::class)->group(function(){
+    Route::get('/user_product', 'index')->name('user_product');
+});
 

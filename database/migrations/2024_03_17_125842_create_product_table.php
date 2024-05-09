@@ -29,10 +29,7 @@ return new class extends Migration
             $table->string('manufacturers_id');
 
 
-            //khoa ngoai den bang category
-            $table->foreign('category_id')->references('id')->on('category_product');
-            //khoa ngoai den bang manufacturers
-            $table->foreign('manufacturers_id')->references('id')->on('manufacturers');
+          
             $table->timestamps();
         });
     }

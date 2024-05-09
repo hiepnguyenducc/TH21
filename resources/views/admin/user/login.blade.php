@@ -20,37 +20,34 @@
                         @csrf
                         <h3 class="text-center text-info">Login</h3>
                         <div class="form-group input-group mt-4">
-                            <input name="email" id="email_address" class="form-control" placeholder="Email address"
-                                type="email" required autofocus value="{{ old('email') }}">
+                            <input name="email" id="email_address" class="form-control" placeholder="Email address" type="email" required autofocus value="{{ old('email') }}">
                             @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="form-group input-group mt-5">
-                            <input id="password" name="password" class="form-control" placeholder="Password"
-                                type="password" required>
+                            <input id="password" name="password" class="form-control" placeholder="Password" type="password" required autofocus value="{{ old('password') }}">
                             <div class="input-group-append">
                                 <button id="togglePassword" class="btn btn-outline-secondary" type="button">
                                     <i id="toggleIcon" class="fa fa-eye-slash"></i>
                                 </button>
                             </div>
                             @if ($errors->has('password'))
-                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label for="remember-me" class="text-info">
-                                <span>Remember me</span> <span><input id="remember-me" name="remember_me"
-                                        type="checkbox"></span>
+                                <span>Remember me</span> <span><input id="remember-me" name="remember_me" type="checkbox"></span>
                             </label>
                             <br>
-                           <div style=" color: red;">
-                             @if ($errors->any())          
+                            <div style="color: red;">
+                                @if ($errors->any())          
                                     @foreach ($errors->all() as $error)
-                                    {{ $error }}</li>
+                                        {{ $error }}</li>
                                     @endforeach
-                            @endif
-                           </div>
+                                @endif
+                            </div>
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="Submit">
                         </div>
                         <div id="register-link" class="text-right">

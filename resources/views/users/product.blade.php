@@ -2,7 +2,5 @@
 @section('title','Register TH21')
 
 @section('content')
-
-
-
+hehe
 @endsection

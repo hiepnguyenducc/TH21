@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->tinyInteger('role_as')->default(0)->comment('0=user,1=admin');
-            $table->string('image')->nullable();
+
+            // Kiểm tra xem trường 'image' đã tồn tại hay chưa trước khi thêm
+            if (!Schema::hasColumn('users', 'image')) {
+                $table->string('image')->nullable();
+            }
         });
     }
 
@@ -24,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role_as');
+            $table->dropColumn('image');
         });
     }
 };
