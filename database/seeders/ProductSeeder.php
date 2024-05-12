@@ -16,14 +16,14 @@ class ProductSeeder extends Seeder
     {
        
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 101; $i <= 120; $i++) {
             $product = Product::create([
                 'name' => 'Product ' . $i,
                 'slug' => 'product-' . $i,
                 'short_desc' => 'Short description for Product ' . $i,
                 'image' => null,
-                'regular_price' => 200,
-                'sale_price' => 150,
+                'regular_price' => 190,
+                'sale_price' => 170,
                 'status' => 0,
                 'description' => 'Description for Product ' . $i,
                 'quantity' => 1,

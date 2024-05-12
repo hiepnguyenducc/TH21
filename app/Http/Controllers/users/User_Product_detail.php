@@ -18,5 +18,4 @@ class User_Product_detail extends Controller
         
         return view('users.product_detail', compact('product','color'));    
     }
-   
 }

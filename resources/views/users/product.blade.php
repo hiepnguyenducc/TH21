@@ -20,61 +20,50 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="product-view-top">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="product-search">
-                                        <input type="email" value="Search">
-                                        <button><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="product-short">
-                                        <div class="dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Newest</a>
-                                                <a href="#" class="dropdown-item">Popular</a>
-                                                <a href="#" class="dropdown-item">Most sale</a>
-                                            </div>
+                    <form action="{{ route('search_product') }}" method="GET">
+                        <div class="col-md-12">
+                            <div class="product-view-top">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="product-search">
+                                            <input type="text" name="search" placeholder="Search"
+                                                value="{{ request('search') }}">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="product-price-range">
-                                        <div class="dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">Product price range
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">$0 to $50</a>
-                                                <a href="#" class="dropdown-item">$51 to $100</a>
-                                                <a href="#" class="dropdown-item">$101 to $150</a>
-                                                <a href="#" class="dropdown-item">$151 to $200</a>
-                                                <a href="#" class="dropdown-item">$201 to $250</a>
-                                                <a href="#" class="dropdown-item">$251 to $300</a>
-                                                <a href="#" class="dropdown-item">$301 to $350</a>
-                                                <a href="#" class="dropdown-item">$351 to $400</a>
-                                                <a href="#" class="dropdown-item">$401 to $450</a>
-                                                <a href="#" class="dropdown-item">$451 to $500</a>
-                                            </div>
+                                    <div class="col-md-4">
+                                        <div class="product-search">
+                                            <select name="regular_price" class="custom-select">
+                                                <option value="">Select price</option>
+                                                <option value="0-50">$0 to $50</option>
+                                                <option value="51-100">$51 to $100</option>
+                                                <option value="101-150">$101 to $150</option>
+                                                <!-- Thêm các tùy chọn khác cho khoảng giá -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="product-search">
+                                            <button type="submit" class="search-button">
+                                                <i class="fa fa-search"></i> 
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     @foreach ($products as $product)
                     <div class="col-md-4">
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="{{ route('user_product_detail', ['id' => $product->id]) }}">{{ $product->name }}</a>
+                                <a href="{{ route('user_product_detail', ['id' => $product->id]) }}">{{ $product->name
+                                    }}</a>
                                 <div class="ratting">
                                     @for ($i = 0; $i < 5; $i++) <i class="fa fa-star"></i>
                                         @endfor
                                 </div>
                             </div>
-                           
+
                             @foreach ($product->productImages as $image)
                             <div class="product-image">
                                 <a href="product-detail.html">
@@ -94,14 +83,12 @@
                     </div>
                     @endforeach
                 </div>
-               
-                
 
                 <!-- Pagination Start -->
-                
-                <!-- Pagination Start -->
+                {!! $products->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                !!}
+                <!-- Pagination End -->
             </div>
-            {!! $products->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next →']) !!}
 
             <!-- Side Bar Start -->
 
@@ -109,7 +96,50 @@
         </div>
     </div>
 </div>
-<!-- Product List End -->
 
+<script>
+    // Lắng nghe sự kiện click trên các liên kết lọc theo giá
+    var searchButton = document.querySelector('.product-search button[type="submit"]');
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    var searchInput = document.querySelector('.product-search input[name="search"]');
+    var searchValue = searchInput.value.trim();
+    var priceRangeSelect = document.querySelector('.product-search select[name="regular_price"]');
+    var priceRangeValue = priceRangeSelect.value;
+    var url = '{{ route("search_product") }}?';
+    if (searchValue) {
+        url += 'search=' + encodeURIComponent(searchValue) + '&';
+    }
+    if (priceRangeValue) {
+        url += 'regular_price=' + encodeURIComponent(priceRangeValue);
+    }
+    window.location.href = url;
+});
+</script>
+<style>
+    .custom-select {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.custom-select option {
+    padding: 8px;
+}
+
+.search-button {
+    padding: 8px;
+    font-size: 14px;
+    background-color: #f8f8f8;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button i {
+    margin-right: 5px;
+}
+</style>
+<!-- Product List End -->
 
 @endsection
