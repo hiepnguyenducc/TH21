@@ -74,11 +74,11 @@
                                         @endfor
                                 </div>
                             </div>
-                           
+
                             @foreach ($product->productImages as $image)
                             <div class="product-image">
                                 <a href="product-detail.html">
-                                    <img src="{{ asset($image->image_url) }}" alt="Product Image">
+                                    <img src="{{asset($image->image_url) }}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -94,11 +94,11 @@
                     </div>
                     @endforeach
                 </div>
-               
-                
+
+
 
                 <!-- Pagination Start -->
-                
+
                 <!-- Pagination Start -->
             </div>
             {!! $products->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next →']) !!}
