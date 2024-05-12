@@ -24,12 +24,11 @@ return new class extends Migration
             $table->tinyInteger('featured')->default(0)->unsigned();
             $table->tinyInteger('best_seller')->default(0)->unsigned();
             $table->tinyInteger('status')->default(0)->comment('1=hidden,0=vissible');
-            $table->string('image')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->string('manufacturers_id');
 
 
-          
+
             $table->timestamps();
         });
     }
