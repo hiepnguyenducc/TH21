@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $validateData = $request->validated();
         $category_product = CategoryProduct::findOrFail($validateData['category_id']);
-       $product =  $category_product->product()->create([
+        $product =  $category_product->product()->create([
             'name'=>$validateData['name'],
             'slug'=>Str::slug($validateData['slug']),
             'short_desc'=>$validateData['short_desc'],

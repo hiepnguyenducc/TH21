@@ -4,11 +4,16 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\ProductImage;
 
 class User_ProductsController extends Controller
 {
     public function index()
     {
-        return view('users.product');
+        $products = Product::paginate(4);
+        
+        return view("users.product", compact('products'));
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 
 
@@ -25,7 +26,7 @@ class UserController extends Controller
         $user->name = $validateData['name'];
         $user->phone = $validateData['phone'];
         $user->email = $validateData['email'];
-        $user->password = $validateData['password'];
+        $user->password = Hash::make($validateData['password']);
         if($request->hasFile('image')){
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();

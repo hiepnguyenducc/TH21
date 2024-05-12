@@ -102,7 +102,6 @@
                                                 <br>
                                                 Quantity: <input type="number" name="color_quantity[{{$item->id}}]" style="width: 50px; border: 1px solid">
                                             </div>
-
                                         </div>
                                     @empty
                                         <div class="col-md-12">

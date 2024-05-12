@@ -11,6 +11,8 @@ use App\Livewire\Admin\Brand\Index;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\users\User_ProductsController;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\users\User_Product_detail;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ Route::get('logOut', [AuthController::class, 'logOut'])->name('logOut');
 
 Route::get('/strayusers', [HomeController::class, 'strayusers'])->name('strayusers'); //Báo lỗi người dùng cố truy cập đến trang admin
 
-Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 //Route Admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
@@ -86,8 +88,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 });
 //Route Website
 
-
 Route::controller(User_ProductsController::class)->group(function(){
     Route::get('/user_product', 'index')->name('user_product');
+
 });
 
+Route::controller(User_Product_detail::class)->group(function(){
+    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail');
+});

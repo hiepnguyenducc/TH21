@@ -27,7 +27,7 @@
     <form action="{{ route('auth.postUser') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <input name="name" id="name" class="form-control" placeholder="Full name" type="text" required autofocus value="{{ old('name') }}">
+            <input name="name" id="name" class="form-control" placeholder="Name" type="text" required autofocus value="{{ old('name') }}">
             @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif
@@ -49,7 +49,7 @@
     
         <div class="form-group">
             <div class="input-group">
-                <input id="password" name="password" class="form-control" placeholder="Create password" type="password" required>
+                <input id="password" name="password" class="form-control" placeholder="Create password" type="password" required value="{{ old('password') }}">
                 <div class="input-group-append">
                     <button id="togglePassword" class="btn btn-outline-secondary" type="button">
                         <i id="toggleIcon" class="fa fa-eye-slash"></i>
@@ -58,6 +58,19 @@
             </div>
             @if ($errors->has('password'))
                 <span class="text-danger">{{ $errors->first('password') }}</span>
+            @endif
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input value="{{ old('password') }}" type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm password" required autofocus>
+                <div class="input-group-append">
+                    <button id="togglePasswordConfirmation" class="btn btn-outline-secondary" type="button">
+                        <i id="toggleIconConfirmation" class="fa fa-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
+            @if ($errors->has('password_confirmation'))
+                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
             @endif
         </div>
     
@@ -98,14 +111,23 @@
         }
     }
     const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-    const toggleIcon = document.getElementById('toggleIcon');
+const togglePasswordConfirmation = document.getElementById('togglePasswordConfirmation');
+const passwordInput = document.getElementById('password');
+const passwordConfirmationInput = document.getElementById('password_confirmation');
+const toggleIcon = document.getElementById('toggleIcon');
+const toggleIconConfirmation = document.getElementById('toggleIconConfirmation');
 
-    togglePassword.addEventListener('click', function () {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        toggleIcon.className = type === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye';
-    });
+togglePassword.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    toggleIcon.className = type === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye';
+});
+
+togglePasswordConfirmation.addEventListener('click', function () {
+    const type = passwordConfirmationInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordConfirmationInput.setAttribute('type', type);
+    toggleIconConfirmation.className = type === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye';
+});
 </script>
 <br><br>
 

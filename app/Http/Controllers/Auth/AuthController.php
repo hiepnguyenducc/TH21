@@ -40,7 +40,6 @@ class AuthController extends Controller
                 return redirect('/')->with('success', 'Signed in as user');
             }
         }
-
         return redirect()->route('login')->withErrors('Email hoặc mật khẩu không đúng!');
     }
     public function postUser(Request $request)
@@ -49,7 +48,7 @@ class AuthController extends Controller
             'phone' => ['required', 'string', 'unique:users', 'max:11', 'regex:/^(0|\+84)[3|5|7|8|9][0-9]{8}$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'name' => ['required', 'string', 'max:30'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
         ], [
             'email.regex' => "Gmail không hợp lệ",
@@ -65,6 +64,7 @@ class AuthController extends Controller
             'name.max' => "Họ và tên quá dài",
             'password.required' => "mật khẩu không được để trống",
             'password.min' => "Mật khấu phải ít nhất 6 ký tự",
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp',
         ]);
         $errors = [];
 
