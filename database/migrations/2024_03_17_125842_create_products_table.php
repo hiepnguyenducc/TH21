@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
@@ -21,14 +21,11 @@ return new class extends Migration
             $table->integer('quantity');
             $table->text('description');
             $table->tinyInteger('trending')->default(0)->comment('1=trending, 0=not trending');
-            $table->tinyInteger('featured')->default(0)->unsigned();
-            $table->tinyInteger('best_seller')->default(0)->unsigned();
-            $table->tinyInteger('status')->default(0)->comment('1=hidden,0=vissible');
+            $table->tinyInteger('featured')->default(0)->comment('1=featured, 0=not featured');
+            $table->tinyInteger('best_seller')->default(0)->comment('1=best seller, 0=not best seller');
+            $table->tinyInteger('status')->default(0)->comment('1=hidden, 0=visible');
             $table->unsignedBigInteger('category_id');
-            $table->string('manufacturers_id');
-
-
-
+            $table->unsignedBigInteger('manufacturer_id'); // Đổi kiểu dữ liệu thành unsignedBigInteger
             $table->timestamps();
         });
     }
@@ -38,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('products');
     }
 };
