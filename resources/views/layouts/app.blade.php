@@ -65,10 +65,9 @@
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="index.html" class="nav-item nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
-                                <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                                <a href="cart.html" class="nav-item nav-link">Cart</a>
+                                <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="checkout.html" class="nav-item nav-link">Checkout</a>
                                 <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             </div>
@@ -113,7 +112,7 @@
                         <div class="col-md-3">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="img/logo2.png" alt="Logo">
+                                    <img src="{{ asset('/img/logo2.png') }}" alt="Logo">
                                 </a>
                             </div>
                         </div>

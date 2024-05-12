@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+       
 
         for ($i = 1; $i <= 100; $i++) {
             $product = Product::create([
@@ -22,8 +22,8 @@ class ProductSeeder extends Seeder
                 'slug' => 'product-' . $i,
                 'short_desc' => 'Short description for Product ' . $i,
                 'image' => null,
-                'regular_price' => 100.0,
-                'sale_price' => 100.0,
+                'regular_price' => 200,
+                'sale_price' => 150,
                 'status' => 0,
                 'description' => 'Description for Product ' . $i,
                 'quantity' => 1,
@@ -34,10 +34,9 @@ class ProductSeeder extends Seeder
                 'manufacturers_id' => 1,
             ]);
 
-            $url = $faker->imageUrl();
             ProductImage::create([
                 'product_id' => $product->id,
-                'image_url' => $url,
+                'image_url' => 'uploads/products/1715528939.jpg',
             ]);
         }
     }

@@ -62,14 +62,14 @@
                                                 <button type="button" class="btn">XL</button>
                                             </div> 
                                         </div>
+                                        @foreach ($color as $color)
                                         <div class="p-color">
                                             <h4>Color:</h4>
                                             <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn">White</button>
-                                                <button type="button" class="btn">Black</button>
-                                                <button type="button" class="btn">Blue</button>
+                                                <button type="button" class="btn">{{ $color->name }}</button>
                                             </div> 
                                         </div>
+                                        @endforeach
                                         <div class="action">
                                             <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
                                             <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Buy Now</a>
