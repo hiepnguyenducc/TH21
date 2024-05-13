@@ -1,19 +1,21 @@
 <?php
-use App\Http\Middleware\AdminMiddleware;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\CategoryProductController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ColorController;
 use App\Livewire\Admin\Brand\Index;
-use App\Http\Controllers\Auth\AuthController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\users\User_ProductsController;
-use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\users\User_Product_detail;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\users\CartController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\users\CheckoutController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\users\User_Product_detail;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\users\User_ProductsController;
+use App\Http\Controllers\Admin\CategoryProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,5 +103,11 @@ Route::controller(User_Product_detail::class)->group(function(){
 
 Route::controller(CartController::class)->group(function(){
     Route::get('/cart', 'index')->name('cart');
+    
+});
+
+
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/checkout', 'index')->name('checkout');
     
 });
