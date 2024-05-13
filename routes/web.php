@@ -15,7 +15,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\users\User_Product_detail;
 use App\Http\Controllers\users\CartController;
 use App\Http\Controllers\users\SearchProductController;
-
+use App\Http\Controllers\users\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,17 +93,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 Route::controller(User_ProductsController::class)->group(function(){
     Route::get('/user_product', 'index')->name('user_product');
-
+    Route::get('/category','categories');
 });
 
 Route::controller(User_Product_detail::class)->group(function(){
-    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail');
-    
+    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail'); 
 });
 
 Route::controller(CartController::class)->group(function(){
     Route::get('/cart', 'index')->name('cart');
 });
+
 Route::controller(SearchProductController::class)->group(function(){
     Route::get('/search-product', 'index')->name('search_product');
 });
