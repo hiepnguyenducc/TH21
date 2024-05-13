@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\users\User_ProductsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\users\User_Product_detail;
+use App\Http\Controllers\users\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 //Route Admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
-    Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
     Route::controller(CategoryProductController::class)->group(function (){
         Route::get('/category','index');
@@ -95,4 +96,11 @@ Route::controller(User_ProductsController::class)->group(function(){
 
 Route::controller(User_Product_detail::class)->group(function(){
     Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail');
+    Route::post('/cart/add/{id}', 'addToCart')->name('cart.add');
+
+});
+
+Route::controller(CartController::class)->group(function(){
+    Route::get('/cart', 'index')->name('cart');
+
 });

@@ -30,6 +30,11 @@
 
     <!-- Scripts -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
     @livewireStyles
 </head>
 
@@ -65,10 +70,9 @@
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="index.html" class="nav-item nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
-                                <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                                <a href="cart.html" class="nav-item nav-link">Cart</a>
+                                <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="checkout.html" class="nav-item nav-link">Checkout</a>
                                 <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             </div>
@@ -79,7 +83,7 @@
                                     @else
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                                     @endguest
-                            
+
                                     <div class="dropdown-menu">
                                         <div class="collapse navbar-collapse ml-auto" id="navbarNav">
                                             <ul class="navbar-nav">
@@ -113,7 +117,7 @@
                         <div class="col-md-3">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="img/logo2.png" alt="Logo">
+                                    <img src="{{ asset('/img/logo2.png') }}" alt="Logo">
                                 </a>
                             </div>
                         </div>
@@ -250,6 +254,13 @@
     @livewireScripts
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script>
+        window.addEventListener('message',event=>{
+            alertify.set('notifier','position', 'top-right');
+            alertify.notify(event.detail.text, event.detail.type);
+        })
+    </script>
 </body>
 
 </html>

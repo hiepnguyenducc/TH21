@@ -82,8 +82,7 @@ class ProductController extends Controller
     public function update(int $product_id, ProductFormRequest $request)
     {
         $validateData = $request->validated();
-        $product = CategoryProduct::findOrFail($validateData['category_id'])
-        ->product()->where('id',$product_id)->first();
+        $product = Product::findOrFail($product_id);
         if($product) {
             $product->update([
                 'name'=>$validateData['name'],
