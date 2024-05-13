@@ -30,6 +30,11 @@
 
     <!-- Scripts -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
     @livewireStyles
 </head>
 
@@ -78,7 +83,7 @@
                                     @else
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                                     @endguest
-                            
+
                                     <div class="dropdown-menu">
                                         <div class="collapse navbar-collapse ml-auto" id="navbarNav">
                                             <ul class="navbar-nav">
@@ -249,6 +254,13 @@
     @livewireScripts
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script>
+        window.addEventListener('message',event=>{
+            alertify.set('notifier','position', 'top-right');
+            alertify.notify(event.detail.text, event.detail.type);
+        })
+    </script>
 </body>
 
 </html>
