@@ -49,7 +49,7 @@
                             <td>{{$item->status == '1' ? 'Hidden':'Visible'}}</td>
                             <td>
                                 <a href="{{url('admin/product/'.$item->id.'/edit')}}" class="btn btn-success">Edit</a>
-                                <a href="{{url('admin/product/'.$item->id.'/delete')}}" onclick="return confirm('Are you sure, you want to delete this data ?')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+                                <a href="{{url('admin/product/'.$item->id.'/delete')}}" onclick="return confirm('Are you sure, you want to delete this data ?')" class="btn btn-danger" data-bs-target="#deleteModal">Delete</a>
                                 <a href="{{url('admin/product/'.$item->id.'/edit')}}" class="btn btn-success">Details</a>
                             </td>
                         </tr>
@@ -59,7 +59,10 @@
                         </tr>
                     @endforelse
                     </tbody>
+                    
                 </table>
+                {!! $product->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                    !!}
 
             </div>
         </div>

@@ -37,6 +37,7 @@
                                                 <option value="0-50">$0 to $50</option>
                                                 <option value="51-100">$51 to $100</option>
                                                 <option value="101-150">$101 to $150</option>
+                                                <option value="151-250">$151 to $250</option>
                                                 <!-- Thêm các tùy chọn khác cho khoảng giá -->
                                             </select>
                                         </div>

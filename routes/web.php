@@ -78,8 +78,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
         Route::put('/user/{user}','update');
         Route::get('/user/{user}/delete','destroy');
     });
+
     Route::controller(ColorController::class)->group(function (){
-       Route::get('/color','index');
+       Route::get('/color','index')->name('color');
        Route::get('/add-color','create');
        Route::post('/color','store');
        Route::get('/color/{colors}/edit','edit');

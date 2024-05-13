@@ -62,14 +62,16 @@
                                                 <button type="button" class="btn">XL</button>
                                             </div> 
                                         </div>
-                                        @foreach ($color as $color)
+                                        
                                         <div class="p-color">
                                             <h4>Color:</h4>
+                                            @foreach ($color as $color)
                                             <div class="btn-group btn-group-sm">
                                                 <button type="button" class="btn">{{ $color->name }}</button>
                                             </div> 
+                                            @endforeach
                                         </div>
-                                        @endforeach
+                                    
                                         <div class="action">
                                             <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
                                             <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Buy Now</a>
@@ -85,9 +87,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="pill" href="#description">Description</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="pill" href="#specification">Specification</a>
-                                    </li>
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="pill" href="#reviews">Reviews (1)</a>
                                     </li>
