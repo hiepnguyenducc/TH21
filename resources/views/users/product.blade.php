@@ -45,7 +45,7 @@
                                     <div class="col-md-1">
                                         <div class="product-search">
                                             <button type="submit" class="search-button">
-                                                <i class="fa fa-search"></i> 
+                                                <i class="fa fa-search"></i>
                                             </button>
                                         </div>
                                     </div>
