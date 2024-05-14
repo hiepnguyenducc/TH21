@@ -251,7 +251,7 @@
             <script src="js/main.js"></script>
         </footer>
     </div>
-    @livewireScripts
+
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
@@ -261,6 +261,7 @@
             alertify.notify(event.detail.text, event.detail.type);
         })
     </script>
+   
 </body>
 
 </html>

@@ -15,5 +15,4 @@ class Cart extends Model
         'product_color_id',
         'quantity'
     ];
-
 }

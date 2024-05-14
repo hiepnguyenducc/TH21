@@ -122,8 +122,7 @@ class View extends Component
         $product = Product::find($this->product_id);
         $product_color = $product->productColor->pluck('color_id')->toArray();
         $color = Color::whereNotIn('id',$product_color)->get();
-        return view('livewire.users.product.view',compact('product','color'))->extends('layouts.app')
-            ->section('content');
+        return view('livewire.users.product.view',compact('product','color'));
     }
 
 }

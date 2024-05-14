@@ -12,7 +12,6 @@ class Index extends Component
     protected $paginationThem = 'bootstrap';
     public $category_id;
     public function deleteCategory($category_id){
-
         $this->category_id=$category_id;
     }
 public function destroyCategory(){
