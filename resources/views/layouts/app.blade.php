@@ -74,7 +74,7 @@
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
                                 <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                                <a href="my-account.html" class="nav-item nav-link">My Account</a>
+                                <a href="{{ route('my_account') }}" class="nav-item nav-link">My Account</a>
                             </div>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">

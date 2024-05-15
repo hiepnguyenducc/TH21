@@ -16,6 +16,7 @@ use App\Http\Controllers\users\User_Product_detail;
 use App\Http\Controllers\users\CartController;
 use App\Http\Controllers\users\CategoryController;
 use App\Http\Controllers\users\SearchProductController;
+use App\Http\Controllers\My_AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,10 @@ Route::get('logOut', [AuthController::class, 'logOut'])->name('logOut');
 
 
 Route::get('/strayusers', [HomeController::class, 'strayusers'])->name('strayusers'); //Báo lỗi người dùng cố truy cập đến trang admin
+
+Route::get('/my_account', [My_AccountController::class, 'my_account'])->name('my_account');
+Route::post('/update_account', [My_AccountController::class, 'update'])->name('update_account');
+
 
 
 

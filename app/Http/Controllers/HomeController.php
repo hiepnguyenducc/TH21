@@ -25,8 +25,13 @@ class HomeController extends Controller
     {
         return view('users.home');
     }
+    
     public function strayusers()
     {
         return view('strayusers');
+    }
+    public function my_account()
+    {
+        return view('users.my_account');
     }
 }
