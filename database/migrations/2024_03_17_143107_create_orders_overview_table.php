@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('orders_overview', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('cus_name')->nullable();
             $table->string('cus_email')->nullable();
             $table->string('cus_phone')->nullable();
-            $table->text('address')->nullable();
+            $table->text('cus_address')->nullable();
+            $table->text('note')->nullable();
             $table->float('total')->nullable();
-            $table->float('discount')->nullable();
             $table->float('subtotal')->nullable();
             $table->tinyInteger('status')->default(0)->nullable()->comment('0: chua xu ly, 2: da thanh toan, 3:huy');
             $table->timestamps();

@@ -3,7 +3,7 @@
     <div class="breadcrumb-wrap">
         <div class="container-fluid">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('user_product') }}">Products</a></li>
                 <li class="breadcrumb-item active">Product List</li>
             </ul>
@@ -47,15 +47,6 @@
                                             <button wire:click="decrementQuantity" class="btn-minus"><i class="fa fa-minus"></i></button>
                                             <input type="text" wire:model="quantityCount" value="{{$this->quantityCount}}" readonly>
                                             <button wire:click="incrementQuantity" class="btn-plus"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="p-size">
-                                        <h4>Size:</h4>
-                                        <div class="btn-group btn-group-sm">
-                                            <button type="button" class="btn">S</button>
-                                            <button type="button" class="btn">M</button>
-                                            <button type="button" class="btn">L</button>
-                                            <button type="button" class="btn">XL</button>
                                         </div>
                                     </div>
                                     @if($product->productColor->count()>0)

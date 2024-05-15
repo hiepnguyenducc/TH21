@@ -16,6 +16,8 @@ use App\Http\Controllers\users\User_Product_detail;
 use App\Http\Controllers\users\CartController;
 use App\Http\Controllers\users\CategoryController;
 use App\Http\Controllers\users\SearchProductController;
+use App\Http\Controllers\users\CheckOutController;
+use App\Http\Controllers\users\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ use App\Http\Controllers\users\SearchProductController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Route login
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -40,11 +42,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'Checklogin'])->name('auth.Checklogin');
 Route::get('logOut', [AuthController::class, 'logOut'])->name('logOut');
 
-
-
 Route::get('/strayusers', [HomeController::class, 'strayusers'])->name('strayusers'); //Báo lỗi người dùng cố truy cập đến trang admin
-
-
 
 //Route Admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
@@ -95,16 +93,26 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 });
 //Route Website
 
+
 Route::controller(User_ProductsController::class)->group(function(){
-    Route::get('/', 'index')->name('user_product');
+    Route::get('/user_product', 'index')->name('user_product');
     Route::get('/category','categories');
 });
 
 Route::controller(User_Product_detail::class)->group(function(){
-
     Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail'); 
 });
 
 Route::controller(SearchProductController::class)->group(function(){
     Route::get('/search_product', 'index')->name('search_product');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/User_cart', [CartController::class, 'index'])->name('user_cart');
+    Route::get('/cart_remove/{id}', [CartController::class, 'destroyCart'])->name('cart_remove');
+    
+    Route::get('/User_checkout', [CartController::class, 'checkout'])->name('user_checkout');
+    Route::post('/User_checkout', [CartController::class, 'order'])->name('order');
+    //Route::post('/User_oders', [OrderController::class, 'index'])->name('user_order');
 });

@@ -71,7 +71,7 @@ class View extends Component
                             Cart::create([
                                 'user_id' =>auth()->user()->id,
                                 'product_id' => $productId,
-
+                                'product_color_id' => $this->productColorId,
                                 'quantity'=>$this->quantityCount
                             ]);
                             dd('Product added to cart successfully');

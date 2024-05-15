@@ -72,8 +72,8 @@
                             <div class="navbar-nav mr-auto">
                                 <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
-                                <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
-                                <a href="checkout.html" class="nav-item nav-link">Checkout</a>
+                                <a href="{{ route('user_cart') }}" class="nav-item nav-link">Cart</a>
+                                <a href="{{ route('user_checkout') }}" class="nav-item nav-link">Checkout</a>
                                 <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             </div>
                             <div class="navbar-nav ml-auto">
@@ -123,8 +123,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="search">
-                                <input type="text" placeholder="Search">
-                                <button><i class="fa fa-search"></i></button>
+                               
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -133,7 +132,7 @@
                                     <i class="fa fa-heart"></i>
                                     <span>(0)</span>
                                 </a>
-                                <a href="cart.html" class="btn cart">
+                                <a href="{{ route('user_cart') }}" class="btn cart">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>(0)</span>
                                 </a>

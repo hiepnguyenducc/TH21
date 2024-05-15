@@ -41,7 +41,7 @@
                     <div class="collapse" id="brand">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="{{url('admin/brands')}}">View Brand</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{url('admin/add-brand')}}">Add Brand</a></li>
+                           
                         </ul>
                     </div>
                 </li>

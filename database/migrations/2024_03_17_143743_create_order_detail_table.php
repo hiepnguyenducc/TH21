@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('order_id')->nullable()->comment('khoa ngoai den bang orders_overview');
             $table->integer('product_id')->nullable();
+            $table->integer('product_color_id')->nullable();
             $table->integer('quantity')->nullable();
             $table->float('total')->nullable();
             $table->timestamps();

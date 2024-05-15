@@ -39,4 +39,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductColor::class,'product_id','id');
     }
+    public function products()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'total');
+    }
 }

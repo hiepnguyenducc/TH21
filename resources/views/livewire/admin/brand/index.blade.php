@@ -50,8 +50,8 @@
                     </tbody>
                 </table>
                 <div>
-                    {{$manufacturers->links()}}
-
+                    {!! $manufacturers->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                    !!}
                 </div>
             </div>
         </div>

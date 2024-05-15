@@ -3,9 +3,96 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Color;
+use App\Models\Product;
+use App\Models\OderDetail;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+
 
 class CartController extends Controller
 {
-    
+    public function index()
+{
+    $user_cart = Cart::where('user_id', auth()->user()->id)->get();
+    $grandTotal = 0;
+
+    if ($user_cart->isNotEmpty()) {
+        $grandTotal = $user_cart->sum(function ($item) {
+            return $item->cartProduct->sale_price * $item->quantity;
+        });
+    }
+
+    return view('users.cart', compact('user_cart', 'grandTotal'));
+}
+    public function destroyCart($cart_id)
+    {
+        $cart_remove = Cart::where('user_id', auth()->user()->id)->where('id', $cart_id)->first();
+
+        if ($cart_remove) {
+            $cart_remove->delete();
+        }
+
+        return redirect()->route('user_cart');
+    }
+    public function checkout(Request $request)
+    {
+        $user_cart = Cart::where('user_id', auth()->user()->id)->get();
+        $grandTotal = 0;
+
+    if ($user_cart->isNotEmpty()) {
+        $grandTotal = $user_cart->sum(function ($item) {
+            return $item->cartProduct->sale_price * $item->quantity;
+        });
+    }
+        
+        return view('users.checkout', compact('user_cart', 'grandTotal'));
+    }
+    public function order(OrderRequest $request){
+        
+        $user_cart = Cart::where('user_id', auth()->user()->id)->get();
+
+        $validateData = $request->validated();
+        $totalOrder = $this->totalOrder();
+       $order = Order::create([
+        'user_id'=>auth()->user()->id,
+        'cus_name'=>$validateData['cus_name'],
+        'cus_email'=>$validateData['cus_email'],
+        'cus_phone'=>$validateData['cus_phone'],
+        'cus_address'=>$validateData['cus_address'],
+        'note'=>$validateData['note'],
+        'total'=>$totalOrder,
+       ]);
+
+       foreach($user_cart as $cartItem){
+            $orderDetail = OderDetail::create([
+                    'order_id'=>$order->id,
+                    'product_id'=>$cartItem->product_id,
+                    'product_color_id'=>$cartItem->product_color_id,
+                    'quantity'=>$cartItem->quantity,
+                    'total'=>$totalOrder
+                ]);
+                
+       }
+       
+     
+      // Cart::where('user_id', auth()->user()->id)->delete();
+
+        return redirect()->route('home')->with('Đặt hàng thành công');
+    }
+    public function totalOrder(){
+        $user_cart = Cart::where('user_id', auth()->user()->id)->get();
+        $grandTotal = 0;
+
+        if ($user_cart->isNotEmpty()) {
+            $grandTotal = $user_cart->sum(function ($item) {
+                return $item->cartProduct->sale_price * $item->quantity;
+            });
+        }
+        return $grandTotal;
+    }
 }

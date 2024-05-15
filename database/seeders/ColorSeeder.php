@@ -15,7 +15,7 @@ class ColorSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 40; $i++) {
             $color = Color::create([
                 'name' => 'Đen' . $i,
                 'code' => 'MM' . $i,
