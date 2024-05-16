@@ -43,17 +43,16 @@ class CartController extends Controller
     {
         $user_cart = Cart::where('user_id', auth()->user()->id)->get();
         $grandTotal = 0;
-
     if ($user_cart->isNotEmpty()) {
         $grandTotal = $user_cart->sum(function ($item) {
             return $item->cartProduct->sale_price * $item->quantity;
         });
     }
-        
+
         return view('users.checkout', compact('user_cart', 'grandTotal'));
     }
     public function order(OrderRequest $request){
-        
+
         $user_cart = Cart::where('user_id', auth()->user()->id)->get();
 
         $validateData = $request->validated();
@@ -76,11 +75,11 @@ class CartController extends Controller
                     'quantity'=>$cartItem->quantity,
                     'total'=>$totalOrder
                 ]);
-                
+
        }
-       
-     
-      // Cart::where('user_id', auth()->user()->id)->delete();
+
+
+      Cart::where('user_id', auth()->user()->id)->delete();
 
         return redirect()->route('home')->with('Đặt hàng thành công');
     }
@@ -95,4 +94,36 @@ class CartController extends Controller
         }
         return $grandTotal;
     }
+    public function updateQuantity(Request $request, $cartId)
+    {
+        $cart = Cart::where('user_id', auth()->user()->id)->where('id', $cartId)->first();
+
+        if ($cart) {
+            $cart->quantity = $request->quantity;
+            $cart->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false], 400);
+    }
+    public function checkQuantity(Request $request, $cartId)
+    {
+        $cart = Cart::where('user_id', auth()->user()->id)->where('id', $cartId)->first();
+
+        if ($cart) {
+            $product = $cart->cartProduct;
+            $requestedQuantity = $request->quantity;
+
+            if ($requestedQuantity <= $product->quantity) {
+                return response()->json(['success' => true, 'available' => true]);
+            } else {
+                return response()->json(['success' => true, 'available' => false, 'availableQuantity' => $product->quantity]);
+            }
+        }
+
+        return response()->json(['success' => false], 400);
+    }
+
+
 }

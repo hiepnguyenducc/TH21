@@ -33,6 +33,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
     @livewireStyles
@@ -123,7 +124,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="search">
-                               
+
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -246,6 +247,8 @@
             <script src="lib/easing/easing.min.js"></script>
             <script src="lib/slick/slick.min.js"></script>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
         </footer>
@@ -260,7 +263,7 @@
             alertify.notify(event.detail.text, event.detail.type);
         })
     </script>
-   
+
 </body>
 
 </html>

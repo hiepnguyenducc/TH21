@@ -19,6 +19,11 @@
                 <div class="col-lg-8">
                     <div class="product-detail-top">
                         <div class="row align-items-center">
+                            @if(session()->has('message'))
+                                <div class="alert alert-success" >
+                                    {{session('message')}}
+                                </div>
+                            @endif
                             @foreach ($product->productImages as $image)
                                 <div class="col-md-5">
                                     <div class="product-slider-single normal-slider">
@@ -72,6 +77,7 @@
 
                                     <div class="action">
                                         <button type="button" wire:click="addToCart({{$product->id}})" class="btn" ><i class="fa fa-shopping-cart" ></i>Add to Cart</button>
+                                        <button type="button" wire:click="addToWishList({{$product->id}})" class="btn" ><i class="fa fa-shopping-cart" ></i>Add to Wishlist</button>
                                         <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Buy Now</a>
                                     </div>
                                 </div>
@@ -126,13 +132,14 @@
                                     </div>
                                     <div class="reviews-submit">
                                         <h4>Give your Review:</h4>
-                                        <div class="ratting">
+                                        <div class="ratting" style="">
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                         </div>
+
                                         <div class="row form">
                                             <div class="col-sm-6">
                                                 <input type="text" placeholder="Name">
@@ -443,5 +450,13 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('toast', event => {
+                toastr[event.detail.type](event.detail.message);
+            });
+        });
+    </script>
+
     <!-- Product Detail End -->
 </div>

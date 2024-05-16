@@ -100,7 +100,7 @@ Route::controller(User_ProductsController::class)->group(function(){
 });
 
 Route::controller(User_Product_detail::class)->group(function(){
-    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail'); 
+    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail');
 });
 
 Route::controller(SearchProductController::class)->group(function(){
@@ -111,8 +111,10 @@ Route::controller(SearchProductController::class)->group(function(){
 Route::middleware(['auth'])->group(function () {
     Route::get('/User_cart', [CartController::class, 'index'])->name('user_cart');
     Route::get('/cart_remove/{id}', [CartController::class, 'destroyCart'])->name('cart_remove');
-    
+
     Route::get('/User_checkout', [CartController::class, 'checkout'])->name('user_checkout');
     Route::post('/User_checkout', [CartController::class, 'order'])->name('order');
-    //Route::post('/User_oders', [OrderController::class, 'index'])->name('user_order');
+    Route::post('/update-quantity/{cart}', [CartController::class, 'updateQuantity']);
+    Route::post('/check-quantity/{cart}', [CartController::class, 'checkQuantity']);
+
 });
