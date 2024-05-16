@@ -109,7 +109,7 @@ Route::controller(User_ProductsController::class)->group(function(){
 });
 
 Route::controller(User_Product_detail::class)->group(function(){
-    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail'); 
+    Route::get('/user_product_detail/{id}', 'index')->name('user_product_detail');
 });
 
 Route::controller(SearchProductController::class)->group(function(){
@@ -120,7 +120,7 @@ Route::controller(SearchProductController::class)->group(function(){
 Route::middleware(['auth'])->group(function () {
     Route::get('/User_cart', [CartController::class, 'index'])->name('user_cart');
     Route::get('/cart_remove/{id}', [CartController::class, 'destroyCart'])->name('cart_remove');
-    
+
 
     Route::get('/User_checkout', [CartController::class, 'checkout'])->name('user_checkout');
     Route::post('/User_checkout', [CartController::class, 'order'])->name('order');
@@ -129,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders/{id}/destroy',[OrderController::class, 'userDesTroy'])->name('User_destroy_order');
 
     Route::post('/subscribe', [HomeController::class, 'subscribe' ])->name('subscribe');
-   
+
 });
 
 // Route::get('thankyou',[HomeController::class, 'thankyou'])->name('thankyou');

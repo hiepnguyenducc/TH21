@@ -4,7 +4,10 @@ namespace App\Livewire\Users\Product;
 
 use App\Models\Cart;
 use App\Models\Color;
+use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Wishlist;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -12,6 +15,10 @@ class View extends Component
 {
     public $product_id, $product, $quantityCount=1,$productColorId;
     public $productColorSelectedQuantity;
+    public $name;
+    public $email;
+    public $content;
+    public $ratings;
     public function colorSelected($productColorId)
     {
 
@@ -78,6 +85,7 @@ class View extends Component
                         }
                         else{
                             dd('Only '.$this->product->quantity.' Quantity Available');
+
                             $this->dispatch('message',[
                                 'text'=>'Only '.$this->product->quantity.' Quantity Available',
                                 'type'=>'warning',
@@ -112,11 +120,46 @@ class View extends Component
         }
     }
 
+    public function addToWishList($productId)
+    {
+        if (Auth::check()) {
+            if (Wishlist::where('user_id',auth()->user()->id)->where('product_id',$productId)->exists()){
+                session()->flash('message', 'Already added to wishlist');
+                return false;
+            }else{
+                Wishlist::create([
+                    'user_id'=>auth()->user()->id,
+                    'product_id'=>$productId,
+                ]);
+                session()->flash('message', 'Wishlist added successfully');
+            }
+
+        }else{
+            session()->flash('message', 'You are not logged in');
+            return false;
+        }
+
+    }
     public function mount($product_id)
     {
         $this->product_id = $product_id;
     }
+    public function addComment($productId, Request $request)
+    {
 
+        $validatedData = $request->validate([
+            'content' => 'required|',
+            'ratings' => 'required|numeric|between:1,5',
+        ]);
+        Comment::create([
+            'user_id' => auth()->user()->id ?? null,
+            'product_id' => $productId,
+            'content' => $this->content,
+            'ratings' => $this->ratings
+        ]);
+        dd('Comment added successfully');
+
+    }
     public function render()
     {
         $product = Product::find($this->product_id);

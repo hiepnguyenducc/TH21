@@ -15,6 +15,11 @@
 <!-- Product List Start -->
 <div class="product-view">
     <div class="container-fluid">
+        @if(session()->has('message'))
+            <div class="alert alert-success" >
+                {{session('message')}}
+            </div>
+        @endif
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
@@ -70,7 +75,7 @@
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a type="button" wire:click="addToWishList({{$product->id}})"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
                             @endforeach
@@ -165,11 +170,11 @@
             padding: 8px;
             font-size: 14px;
         }
-    
+
         .custom-select option {
             padding: 8px;
         }
-    
+
         .search-button {
             padding: 8px;
             font-size: 14px;
@@ -177,7 +182,7 @@
             border: none;
             cursor: pointer;
         }
-    
+
         .search-button i {
             margin-right: 5px;
         }

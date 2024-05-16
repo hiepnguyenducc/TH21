@@ -52,11 +52,11 @@ class CartController extends Controller
             return $item->cartProduct->sale_price * $item->quantity;
         });
     }
-        
+
         return view('users.checkout', compact('user_cart', 'grandTotal'));
     }
     public function order(OrderRequest $request){
-        
+
         $user_cart = Cart::where('user_id', auth()->user()->id)->get();
 
         $validateData = $request->validated();
@@ -79,8 +79,8 @@ class CartController extends Controller
                     'quantity'=>$cartItem->quantity,
                     'total'=>$totalOrder
                 ]);
-                
-       }   
+
+       }
        Mail::to($validateData['cus_email'])->send(new OrderConfirm());
        Cart::where('user_id', auth()->user()->id)->delete();
 
