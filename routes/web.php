@@ -19,6 +19,7 @@ use App\Http\Controllers\users\SearchProductController;
 use App\Http\Controllers\users\CheckOutController;
 use App\Http\Controllers\users\OrderController;
 use App\Http\Controllers\Admin\UserOrderController;
+use App\Http\Controllers\users\MyAcCountController;
 
 
 /*
@@ -97,7 +98,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('/AllUserOrder','AllUserOrder')->name('All_User_Order');
         Route::get('AllUser/{id}/DesTroy', 'AllUserDesTroy')->name('All_User_destroy_order');
 
-        Route::get('AllUser/{id}/Cancel', 'AllUserCancel')->name('All_User_destroy_order');
+        Route::get('Cancel', 'AllUserCancel')->name('All_User_cancel_order');
     });
 });
 //Route Website
@@ -129,6 +130,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders/{id}/destroy',[OrderController::class, 'userDesTroy'])->name('User_destroy_order');
 
     Route::post('/subscribe', [HomeController::class, 'subscribe' ])->name('subscribe');
+    Route::get('/myaccoutn', [MyAcCountController::class, 'index'])->name('my_account');
 
 });
 
