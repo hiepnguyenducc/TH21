@@ -41,10 +41,23 @@
                     <div class="collapse" id="brand">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="{{url('admin/brands')}}">View Brand</a></li>
-                           
+
                         </ul>
                     </div>
                 </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#slide" aria-expanded="false" aria-controls="ui-basic">
+                <i class="mdi mdi-circle-outline menu-icon"></i>
+                <span class="menu-title">Slide</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="slide">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/slide')}}">View Slide</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/add-slide')}}">Add Slide</a></li>
+                </ul>
+            </div>
+        </li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="ui-basic">
                 <i class="mdi mdi-circle-outline menu-icon"></i>

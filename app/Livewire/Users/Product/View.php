@@ -65,11 +65,7 @@ class View extends Component
                     }
                     else{
                         dd('select your product color');
-                        $this->dispatch('message',[
-                            'text'=>'Select your product color',
-                            'type'=>'info',
-                            'status'=>404
-                        ]);
+
                     }
                 }else{
                     if($this->product->quantity > 0){
@@ -81,29 +77,20 @@ class View extends Component
                                 'product_color_id' => $this->productColorId,
                                 'quantity'=>$this->quantityCount
                             ]);
-                            dd('Product added to cart successfully');
+                            session()->flash('message', 'Product added to cart successfully');
                         }
                         else{
                             dd('Only '.$this->product->quantity.' Quantity Available');
 
-                            $this->dispatch('message',[
-                                'text'=>'Only '.$this->product->quantity.' Quantity Available',
-                                'type'=>'warning',
-                                'status'=>404
-                            ]);
                         }
                     }
                     else{
                         dd('Out-of-stock products');
-                        $this->dispatch('message',[
-                            'text'=>'Out-of-stock products',
-                            'type'=>'warning',
-                            'status'=>404
-                        ]);
+
                     }
                 }
             } else {
-                dd('product does not exist');
+                session()->flash('message', 'Product does not exist');
                 $this->dispatch('message',[
                     'text'=>'Product does not exist',
                     'type'=>'warning',
@@ -112,11 +99,7 @@ class View extends Component
             }
         } else {
             dd('login');
-            $this->dispatch('message',[
-                'text'=>'Please log in to add to cart',
-                'type'=>'info',
-                'status'=>401
-            ]);
+
         }
     }
 
@@ -133,7 +116,6 @@ class View extends Component
                 ]);
                 session()->flash('message', 'Wishlist added successfully');
             }
-
         }else{
             session()->flash('message', 'You are not logged in');
             return false;
