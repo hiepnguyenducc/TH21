@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-sm-6">
                             <i class="fa fa-phone-alt"></i>
-                            +012-345-6789
+                            0909999090
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                                 <a href="{{ route('user_cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="{{ route('user_checkout') }}" class="nav-item nav-link">Checkout</a>
                                 <a href="{{ route('User_list_order') }}" class="nav-item nav-link">My Order</a>
-                                <a href="my-account.html" class="nav-item nav-link">My Account</a>
+                                <a href="{{ route('my_account') }}" class="nav-item nav-link">My Account</a>
                             </div>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
@@ -156,9 +156,9 @@
                             <div class="footer-widget">
                                 <h2>Get in Touch</h2>
                                 <div class="contact-info">
-                                    <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i class="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                                    <p><i class="fa fa-map-marker"></i>53 Võ Văn Ngân</p>
+                                    <p><i class="fa fa-envelope"></i>TH21@gamil.com.com</p>
+                                    <p><i class="fa fa-phone"></i>0909999090</p>
                                 </div>
                             </div>
                         </div>

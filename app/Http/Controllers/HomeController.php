@@ -27,6 +27,7 @@ class HomeController extends Controller
         $trendingProducts = Product::where('trending', true)->orderBy('created_at', 'desc')->take(3)->get();
         return view('users.home', compact('products', 'trendingProducts'));
     }
+    
 
     public function strayusers()
     {
@@ -38,7 +39,7 @@ class HomeController extends Controller
 
         // Gửi email
         Mail::to($email)->send(new NewsletterSubscription());
-        
+
         // Hiển thị thông báo thành công
         return view('thankyou');
     }
