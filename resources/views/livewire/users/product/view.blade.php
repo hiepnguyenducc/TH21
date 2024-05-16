@@ -117,44 +117,65 @@
                                     </ul>
                                 </div>
                                 <div id="reviews" class="container tab-pane fade">
-                                    <div class="reviews-submitted">
-                                        <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <p>
-                                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
-                                        </p>
-                                    </div>
-                                    <div class="reviews-submit">
-                                        <h4>Give your Review:</h4>
-                                        <div class="ratting" style="">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
+
+                                        <div class="reviews-submitted">
+                                            <div class="reviewer">Phasellus Gravida - <span>01 Jan 2020</span></div>
+                                            <div class="ratting">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <p>
+                                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+                                            </p>
                                         </div>
 
-                                        <div class="row form">
-                                            <div class="col-sm-6">
-                                                <input type="text" placeholder="Name">
+                                        <div class="reviews-submit">
+                                            <h4>Give your Review:</h4>
+                                            <div class="ratting" style="">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="email" placeholder="Email">
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <textarea placeholder="Review"></textarea>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <button>Submit</button>
+                                            <select id="ratings" name="ratings" wire:model="ratings">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+
+                                            <div class="row form">
+                                                @if(auth()->check())
+                                                    <div class="col-sm-6">
+                                                        <input type="text" placeholder="Name" name="name" value="{{ auth()->user()->name }}" readonly>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="email" placeholder="Email" name="email" value="{{ auth()->user()->email }}" readonly>
+                                                    </div>
+                                                @else
+                                                    <div class="col-sm-6">
+                                                        <input type="text" placeholder="Name" name="name"  wire:model="name">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="email" placeholder="Email" name="email" wire:model="email">
+                                                    </div>
+                                                @endif
+
+                                                <div class="col-sm-12">
+                                                    <textarea placeholder="Review" name="content" wire:model="content"></textarea>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <button type="button" wire:click="addComment({{$product->id}})">Submit</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
