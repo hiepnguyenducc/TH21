@@ -15,7 +15,7 @@ class User_ProductsController extends Controller
     {
         $products = Product::paginate(12);
         
-        $categories  = CategoryProduct::all();
+        $categories  = CategoryProduct::paginate(3);
         
         return view("users.product", compact('products','categories'));
     }

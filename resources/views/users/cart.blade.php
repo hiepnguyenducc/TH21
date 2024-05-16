@@ -64,8 +64,12 @@
                                 @endif
                             @empty
                             @endforelse
+                            
                             </tbody>
+
                         </table>
+                        {!! $user_cart->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                !!}
                     </div>
                 </div>
             </div>
@@ -89,6 +93,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

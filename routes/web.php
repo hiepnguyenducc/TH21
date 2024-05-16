@@ -21,6 +21,8 @@ use App\Http\Controllers\users\OrderController;
 use App\Http\Controllers\Admin\UserOrderController;
 use App\Http\Controllers\users\MyAcCountController;
 
+use App\Livewire\Users\Product\View;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +133,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/subscribe', [HomeController::class, 'subscribe' ])->name('subscribe');
     Route::get('/myaccoutn', [MyAcCountController::class, 'index'])->name('my_account');
+
+    Route::post('/update-quantity/{cart}', [CartController::class, 'updateQuantity']);
+    Route::post('/check-quantity/{cart}', [CartController::class, 'checkQuantity']);
+
+    Route::get('/listwishlit', [View::class, 'showWishlist'])->name('listwishlit'); 
 
 });
 
