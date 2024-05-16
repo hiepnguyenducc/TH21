@@ -74,6 +74,7 @@
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
                                 <a href="{{ route('user_cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="{{ route('user_checkout') }}" class="nav-item nav-link">Checkout</a>
+                                <a href="{{ route('User_list_order') }}" class="nav-item nav-link">My Order</a>
                                 <a href="my-account.html" class="nav-item nav-link">My Account</a>
                             </div>
                             <div class="navbar-nav ml-auto">

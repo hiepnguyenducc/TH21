@@ -9,10 +9,6 @@ class CheckOutController extends Controller
 {
     public function index(Request $request)
     {
-        // $grandTotal = $request->input('grandTotal');
-        // $cartItems = $request->input('cartItems');
-
-
-        // return view('users.checkout', compact('grandTotal', 'cartItems'));
+        
     }
 }

@@ -29,24 +29,24 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Name</label>
-                                    <input class="form-control" type="text" placeholder="Name" name="cus_name">
+                                    <input class="form-control" type="text" placeholder="Name" name="cus_name" required>
                                 </div>
         
                                 <div class="col-md-6">
                                     <label>E-mail</label>
-                                    <input class="form-control" type="text" placeholder="E-mail" name="cus_email">
+                                    <input class="form-control" type="text" placeholder="E-mail" name="cus_email" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Mobile No</label>
-                                    <input class="form-control" type="text" placeholder="Mobile No" name="cus_phone">
+                                    <input class="form-control" type="text" placeholder="Mobile No" name="cus_phone" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Delivery Address</label>
-                                    <input class="form-control" type="text" placeholder="Address" name="cus_address">
+                                    <input class="form-control" type="text" placeholder="Address" name="cus_address" required>
                                 </div>
                                 <div class="col-md-12">
                                     <label>Note</label>
-                                    <input class="form-control" type="text" placeholder="Note" name="note">
+                                    <input class="form-control" type="text" placeholder="Note" name="note" required>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="checkout-payment">
                             <div class="checkout-btn">
-                                <button type="submit">Place Order</button>
+                                <button type="submit" onclick="return confirm('Bạn xác nhận đơn hàng và sẽ nhận được mail thông báo!')">Place Order</button>
                             </div>
                         </div>
                     </div>

@@ -87,9 +87,9 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
+            <a class="nav-link" href="{{ route('All_User_Order') }}">
                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+                <span class="menu-title">Order user</span>
             </a>
         </li>
     </ul>

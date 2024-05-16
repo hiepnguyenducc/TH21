@@ -12,6 +12,9 @@ use App\Models\OderDetail;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirm;
+
 
 
 class CartController extends Controller
@@ -77,10 +80,9 @@ class CartController extends Controller
                     'total'=>$totalOrder
                 ]);
                 
-       }
-       
-     
-      // Cart::where('user_id', auth()->user()->id)->delete();
+       }   
+       Mail::to($validateData['cus_email'])->send(new OrderConfirm());
+       Cart::where('user_id', auth()->user()->id)->delete();
 
         return redirect()->route('home')->with('Đặt hàng thành công');
     }
@@ -95,4 +97,5 @@ class CartController extends Controller
         }
         return $grandTotal;
     }
+
 }

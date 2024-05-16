@@ -18,6 +18,8 @@ use App\Http\Controllers\users\CategoryController;
 use App\Http\Controllers\users\SearchProductController;
 use App\Http\Controllers\users\CheckOutController;
 use App\Http\Controllers\users\OrderController;
+use App\Http\Controllers\Admin\UserOrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +92,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
        Route::get('/color/{colors}/delete','destroy');
     });
 
+    //UserOrderall
+    Route::controller(UserOrderController::class)->group(function (){
+        Route::get('/AllUserOrder','AllUserOrder')->name('All_User_Order');
+        Route::get('AllUser/{id}/DesTroy', 'AllUserDesTroy')->name('All_User_destroy_order');
+
+        Route::get('AllUser/{id}/Cancel', 'AllUserCancel')->name('All_User_destroy_order');
+    });
 });
 //Route Website
 
@@ -112,7 +121,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/User_cart', [CartController::class, 'index'])->name('user_cart');
     Route::get('/cart_remove/{id}', [CartController::class, 'destroyCart'])->name('cart_remove');
     
+
     Route::get('/User_checkout', [CartController::class, 'checkout'])->name('user_checkout');
     Route::post('/User_checkout', [CartController::class, 'order'])->name('order');
-    //Route::post('/User_oders', [OrderController::class, 'index'])->name('user_order');
+
+    Route::get('/User_list_order', [OrderController::class, 'userOder'])->name('User_list_order');
+    Route::get('orders/{id}/destroy',[OrderController::class, 'userDesTroy'])->name('User_destroy_order');
+
+    Route::post('/subscribe', [HomeController::class, 'subscribe' ])->name('subscribe');
+   
 });
+
+// Route::get('thankyou',[HomeController::class, 'thankyou'])->name('thankyou');

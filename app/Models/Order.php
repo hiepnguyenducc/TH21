@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -21,5 +22,12 @@ class Order extends Model
         'subtotal',
         'status',
     ];
-    
+    public function orderDetail():HasMany{
+        return $this->hasMany(OderDetail::class, 'order_id','id');
+    } 
+    public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
 }
