@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
@@ -14,6 +15,9 @@ class User_ProductsController extends Controller
     {
         $products = Product::paginate(12);
         
-        return view("users.product", compact('products'));
+        $categories  = CategoryProduct::paginate(3);
+        
+        return view("users.product", compact('products','categories'));
     }
+    
 }

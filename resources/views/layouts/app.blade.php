@@ -30,6 +30,12 @@
 
     <!-- Scripts -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
     @livewireStyles
 </head>
 
@@ -46,7 +52,7 @@
                         </div>
                         <div class="col-sm-6">
                             <i class="fa fa-phone-alt"></i>
-                            +012-345-6789
+                            0909999090
                         </div>
                     </div>
                 </div>
@@ -67,9 +73,16 @@
                             <div class="navbar-nav mr-auto">
                                 <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                                 <a href="{{ route('user_product') }}" class="nav-item nav-link">Products</a>
+<<<<<<< HEAD
                                 <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
                                 <a href="{{ url('checkout') }}" class="nav-item nav-link">Checkout</a>
                                 <a href="my-account.html" class="nav-item nav-link">My Account</a>
+=======
+                                <a href="{{ route('user_cart') }}" class="nav-item nav-link">Cart</a>
+                                <a href="{{ route('user_checkout') }}" class="nav-item nav-link">Checkout</a>
+                                <a href="{{ route('User_list_order') }}" class="nav-item nav-link">My Order</a>
+                                <a href="{{ route('my_account') }}" class="nav-item nav-link">My Account</a>
+>>>>>>> 31a6a6167c19b43ca163516ff4e81bbf2f202cea
                             </div>
                             <div class="navbar-nav ml-auto">
                                 <div class="nav-item dropdown">
@@ -78,7 +91,7 @@
                                     @else
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                                     @endguest
-                            
+
                                     <div class="dropdown-menu">
                                         <div class="collapse navbar-collapse ml-auto" id="navbarNav">
                                             <ul class="navbar-nav">
@@ -118,8 +131,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="search">
-                                <input type="text" placeholder="Search">
-                                <button><i class="fa fa-search"></i></button>
+
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -128,7 +140,7 @@
                                     <i class="fa fa-heart"></i>
                                     <span>(0)</span>
                                 </a>
-                                <a href="cart.html" class="btn cart">
+                                <a href="{{ route('user_cart') }}" class="btn cart">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>(0)</span>
                                 </a>
@@ -151,9 +163,9 @@
                             <div class="footer-widget">
                                 <h2>Get in Touch</h2>
                                 <div class="contact-info">
-                                    <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i class="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                                    <p><i class="fa fa-map-marker"></i>53 Võ Văn Ngân</p>
+                                    <p><i class="fa fa-envelope"></i>TH21@gamil.com.com</p>
+                                    <p><i class="fa fa-phone"></i>0909999090</p>
                                 </div>
                             </div>
                         </div>
@@ -242,13 +254,23 @@
             <script src="lib/easing/easing.min.js"></script>
             <script src="lib/slick/slick.min.js"></script>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
         </footer>
     </div>
-    @livewireScripts
+
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script>
+        window.addEventListener('message',event=>{
+            alertify.set('notifier','position', 'top-right');
+            alertify.notify(event.detail.text, event.detail.type);
+        })
+    </script>
+
 </body>
 
 </html>

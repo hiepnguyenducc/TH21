@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'email' => $user_name . '@gmail.com',
                 'password' => Hash::make('11111111'),
                 'phone' => '0900077777',
-                'image' => '1715233331.png',
+                'image' => '1715329987.png',
                 'role_as' => '0',
             ]);
         }

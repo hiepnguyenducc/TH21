@@ -4,15 +4,11 @@ namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
 
-
-class CheckoutController extends Controller
+class CheckOutController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(12);
         
-        return view("users.checkout", compact('products'));
     }
 }

@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     public function index(){
-        $product = Product::all();
+        $product = Product::paginate(10);
         return view('admin.product.index',compact('product'));
     }
     public function create(){
@@ -82,8 +82,7 @@ class ProductController extends Controller
     public function update(int $product_id, ProductFormRequest $request)
     {
         $validateData = $request->validated();
-        $product = CategoryProduct::findOrFail($validateData['category_id'])
-        ->product()->where('id',$product_id)->first();
+        $product = Product::findOrFail($product_id);
         if($product) {
             $product->update([
                 'name'=>$validateData['name'],
@@ -138,17 +137,22 @@ class ProductController extends Controller
         return redirect()->back()->with('message','Product Image Deleted');
     }
     public  function destroy( int $product_id)
-    {
+    { $product = Product::findOrFail($product_id);
         $product = Product::findOrFail($product_id);
-        if ($product->productImages()){
-            foreach ($product->productImages() as $image){
-                if(File::exists($image->image)){
-                    File::delete($image->image);
-                }
-            }
-        }
+
+        // Lấy danh sách các đường dẫn hình ảnh
+        $imagePaths = $product->productImages->pluck('image_url')->toArray();
+    
+        // Xóa bản ghi hình ảnh trong cơ sở dữ liệu
+        $product->productImages()->delete();
+    
+        // Xóa sản phẩm
         $product->delete();
-        return redirect()->back()->with('message','Product Delete with all image');
+    
+        // Xóa các hình ảnh trong mã code
+        // Không cần thực hiện bất kỳ thao tác nào ở đây
+        
+        return redirect()->back()->with('message', 'Product deleted with all images');
     }
     public function updateProductColorQuantity(Request $request, $product_color_id)
     {

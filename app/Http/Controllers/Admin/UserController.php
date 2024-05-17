@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 class UserController extends Controller
 {
     public function index(){
-        $user = User::all();
+        $user = User::paginate(10);
         return view('admin.user.index',compact('user'));
     }
     public function create(){
@@ -69,13 +69,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        if (!empty($user->image)) {
-            $imagePath = public_path('uploads/user/' . $user->image);
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
-        }
         return redirect('/admin/user')->with('message', 'User Deleted Successfully');
     }
-    
 }

@@ -72,7 +72,8 @@
                     </tbody>
                 </table>
                 <div>
-                    {{$category_product->links()}}
+                    {!! $category_product->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                !!}
                 </div>
             </div>
         </div>

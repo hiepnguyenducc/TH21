@@ -14,29 +14,26 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-       
-
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 250; $i++) {
             $product = Product::create([
                 'name' => 'Product ' . $i,
                 'slug' => 'product-' . $i,
                 'short_desc' => 'Short description for Product ' . $i,
-                'image' => null,
-                'regular_price' => 200,
-                'sale_price' => 150,
+                'regular_price' => $i,
+                'sale_price' => $i-1,
                 'status' => 0,
                 'description' => 'Description for Product ' . $i,
-                'quantity' => 1,
+                'quantity' => '10',
                 'trending' => 0,
                 'featured' => 0,
                 'best_seller' => 0,
-                'category_id' => 1,
-                'manufacturers_id' => 1,
+                'category_id' => '1',
+                'manufacturers_id' => '1',
             ]);
 
             ProductImage::create([
                 'product_id' => $product->id,
-                'image_url' => 'uploads/products/1715528939.jpg',
+                'image_url' => 'uploads/products/1715497213.jpg',
             ]);
         }
     }

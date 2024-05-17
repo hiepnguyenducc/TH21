@@ -41,7 +41,21 @@
                     <div class="collapse" id="brand">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="{{url('admin/brands')}}">View Brand</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{url('admin/add-brand')}}">Add Brand</a></li>
+                           
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#slide" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="mdi mdi-circle-outline menu-icon"></i>
+                        <span class="menu-title">Slide</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="slide">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="{{url('admin/slide')}}">View Slide</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{url('admin/add-slide')}}">Add Slide</a></li>
+                        
                         </ul>
                     </div>
                 </li>
@@ -59,9 +73,9 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="{{ route('color') }}">
                 <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Tables</span>
+                <span class="menu-title">Product Color</span>
             </a>
         </li>
         <li class="nav-item">
@@ -87,9 +101,9 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
+            <a class="nav-link" href="{{ route('All_User_Order') }}">
                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+                <span class="menu-title">Order user</span>
             </a>
         </li>
     </ul>
