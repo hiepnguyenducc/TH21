@@ -140,18 +140,13 @@ class ProductController extends Controller
     { $product = Product::findOrFail($product_id);
         $product = Product::findOrFail($product_id);
 
-        // Lấy danh sách các đường dẫn hình ảnh
         $imagePaths = $product->productImages->pluck('image_url')->toArray();
-    
-        // Xóa bản ghi hình ảnh trong cơ sở dữ liệu
+
         $product->productImages()->delete();
-    
-        // Xóa sản phẩm
+
         $product->delete();
-    
-        // Xóa các hình ảnh trong mã code
-        // Không cần thực hiện bất kỳ thao tác nào ở đây
-        
+
+
         return redirect()->back()->with('message', 'Product deleted with all images');
     }
     public function updateProductColorQuantity(Request $request, $product_color_id)
