@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image')->nullable()->comment('hinh anh');
             $table->string('link')->nullable()->comment('lien ket khi bam vao');
             $table->integer('position')->nullable()->comment('vi tri');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

@@ -95,6 +95,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
        Route::get('/color/{colors}/delete','destroy');
     });
 
+
+    Route::controller(\App\Http\Controllers\Admin\SlideController::class)->group(function (){
+        Route::get('/slide','index')->name('slide');
+        Route::get('/add-slide','create');
+        Route::post('/slide','store');
+        Route::get('/slide/{slide}/edit','edit');
+        Route::put('/slide/{slide}','update');
+        Route::get('/slide/{slide}/delete','destroy');
+    });
     //UserOrderall
     Route::controller(UserOrderController::class)->group(function (){
         Route::get('/AllUserOrder','AllUserOrder')->name('All_User_Order');
