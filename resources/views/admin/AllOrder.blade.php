@@ -50,7 +50,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('All_User_destroy_order', $order->id) }}" class="btn btn-warning btn-sm" onclick="return confirm('Bạn xác nhận đơn hàng này cho khách!')">
+                                <a href="{{ route('All_User_cancel_order', $order->id) }}" class="btn btn-warning btn-sm" onclick="return confirm('Bạn xác nhận đơn hàng này cho khách!')">
                                     <i class="fa fa-trash"></i> Cancel
                                 </a>
                             </td>

@@ -74,14 +74,14 @@
                                     <img src="{{ asset($image->image_url) }}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a type="button" wire:click="addToCart({{ $product->id }})"><i class="fa fa-cart-plus"></i></a>
                                     <a type="button" wire:click="addToWishList({{$product->id}})"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
                             @endforeach
                             <div class="product-price">
                                 <h3><span>$</span>{{ $product->regular_price }}</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -107,6 +107,8 @@
                         </ul>
                         @endforeach
                     </nav>
+                    {!! $categories->links('pagination::bootstrap-4', ['prev_page' => '← Previous', 'next_page' => 'Next→'])
+                    !!}
                 </div>
 
                 <div class="sidebar-widget widget-slider">
